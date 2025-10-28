@@ -27,8 +27,10 @@ sed -i "10c\\RUN echo '${username}:${userPassword}' | chpasswd" Dockerfile
 
 ############################################################################
 
+mkdir /home/$USER/kali_container
+
 sudo docker build . -t remote_kali_by_hexadivine
-sudo docker run -d --name remote_kali_by_hexadivine -p 3399:3399 --restart unless-stopped --privileged  remote_kali_by_hexadivine
+sudo docker run -d --name remote_kali_by_hexadivine -p 3399:3399 -v /home/$USER/kali_container:/home/$username/  --restart unless-stopped --privileged  remote_kali_by_hexadivine
 
 ############################################################################
 
