@@ -7,8 +7,7 @@ sudo docker rmi remote_kali_by_hexadivine 2>/dev/null
 
 ############################################################################
 
-read -rsp "Provide password for root (default:root): " rootPassword
-echo
+read -rp "Provide password for root (default:root): " rootPassword
 
 rootPassword=${rootPassword:-root}
 sed -i "8c\\RUN echo 'root:${rootPassword}' | chpasswd" Dockerfile
@@ -16,8 +15,7 @@ sed -i "8c\\RUN echo 'root:${rootPassword}' | chpasswd" Dockerfile
 ############################################################################
 
 read -p "Provide username (default:kali): " username
-read -rsp "Provide password for given user (default:kali): " userPassword
-echo
+read -rp "Provide password for given user (default:kali): " userPassword
 
 username=${username:-kali}
 userPassword=${userPassword:-kali}
@@ -27,10 +25,11 @@ sed -i "10c\\RUN echo '${username}:${userPassword}' | chpasswd" Dockerfile
 
 ############################################################################
 
+rm -rf /home/$USER/kali_container
 mkdir /home/$USER/kali_container
 
 sudo docker build . -t remote_kali_by_hexadivine
-sudo docker run -d --name remote_kali_by_hexadivine -p 3399:3399 -v /home/$USER/kali_container:/home/$username/  --restart unless-stopped --privileged  remote_kali_by_hexadivine
+sudo docker run -d --name remote_kali_by_hexadivine -p 3399:3399 -v /home/$USER/kali_container:/home/$username/  --restart unless-stopped --privileged  --network host remote_kali_by_hexadivine
 
 ############################################################################
 
