@@ -36,3 +36,8 @@ sudo docker run -d --name remote_kali_by_hexadivine -p 3399:3399 -v /home/$USER/
 sed -i '8c\RUN echo "root:root" | chpasswd' Dockerfile
 sed -i '9c\RUN useradd -ms /bin/bash kali' Dockerfile
 sed -i '10c\RUN echo "kali:kali" | chpasswd' Dockerfile
+
+############################################################################
+
+sudo cp ./runkali.py /opt
+sudo cp ./runkali.desktop /usr/share/applications/
