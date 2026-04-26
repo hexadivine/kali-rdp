@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Run Kali Command
+Comment=Run commands on Kali via SSH
+Exec=python3 /opt/runkali.py
+Icon=distributor-logo-kali
+Terminal=false
+Type=Application
+Categories=Utility;
