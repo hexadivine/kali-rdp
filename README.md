@@ -1,6 +1,6 @@
 # Installation
 
-Execute `restart.sh` file.
+Execute `install.sh` file.
 
 # Access 
 
